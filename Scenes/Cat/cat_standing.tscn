@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=3 uid="uid://d38lf1ga8aeq3"]
+
+[ext_resource type="Texture2D" uid="uid://b7kef1xa207ho" path="res://icon.svg" id="1_2w1yj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k2f8n"]
+radius = 121.598
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tphje"]
+radius = 58.0
+height = 484.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nbtcm"]
+radius = 69.029
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ugvbo"]
+radius = 28.9964
+height = 171.529
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u0ugj"]
+radius = 27.1846
+height = 162.969
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_444eq"]
+radius = 28.7883
+height = 174.357
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xlsy5"]
+radius = 25.4186
+height = 173.315
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5pk0r"]
+radius = 57.0
+height = 508.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wo7al"]
+radius = 12.7279
+height = 162.635
+
+[node name="Cat" type="Node2D"]
+
+[node name="cat_sprite" type="Sprite2D" parent="."]
+scale = Vector2(6.08, 2.24)
+texture = ExtResource("1_2w1yj")
+
+[node name="head" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="head"]
+position = Vector2(-366, -137)
+shape = SubResource("CircleShape2D_k2f8n")
+
+[node name="back" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="back"]
+position = Vector2(1, -83)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_tphje")
+
+[node name="butt" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="butt"]
+position = Vector2(319, -80)
+shape = SubResource("CircleShape2D_nbtcm")
+
+[node name="paws" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paws"]
+position = Vector2(-403, 148)
+rotation = 0.523599
+shape = SubResource("CapsuleShape2D_ugvbo")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="paws"]
+position = Vector2(-333, 174)
+rotation = 0.261799
+shape = SubResource("CapsuleShape2D_u0ugj")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="paws"]
+position = Vector2(297, 203)
+rotation = -0.261799
+shape = SubResource("CapsuleShape2D_444eq")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="paws"]
+position = Vector2(368, 181)
+rotation = -0.523599
+shape = SubResource("CapsuleShape2D_xlsy5")
+
+[node name="tummy" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tummy"]
+position = Vector2(1, 84)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5pk0r")
+
+[node name="tail" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tail"]
+position = Vector2(430, -190)
+rotation = 0.785398
+shape = SubResource("CapsuleShape2D_wo7al")

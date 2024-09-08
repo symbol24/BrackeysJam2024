@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwps4jjnyb2rl"]
+
+[ext_resource type="Script" path="res://Code/Hand/hand.gd" id="1_rswyt"]
+[ext_resource type="Texture2D" uid="uid://b7kef1xa207ho" path="res://icon.svg" id="2_yvnfd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b2sc5"]
+radius = 31.0644
+
+[node name="Hand" type="Area2D"]
+script = ExtResource("1_rswyt")
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_yvnfd")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+visible = false
+shape = SubResource("CircleShape2D_b2sc5")

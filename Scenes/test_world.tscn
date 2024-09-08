@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://mo34bgvduo4y"]
+
+[ext_resource type="PackedScene" uid="uid://dwps4jjnyb2rl" path="res://Scenes/Hand/hand.tscn" id="1_1hf1i"]
+[ext_resource type="PackedScene" uid="uid://d38lf1ga8aeq3" path="res://Scenes/Cat/cat_standing.tscn" id="1_mnfpb"]
+
+[node name="test_world" type="Node2D"]
+
+[node name="Cat" parent="." instance=ExtResource("1_mnfpb")]
+
+[node name="Hand" parent="." instance=ExtResource("1_1hf1i")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="mouse_speed" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -1.0
+offset_top = -289.0
+offset_right = 54.0
+offset_bottom = -266.0
+text = "000000
+"
