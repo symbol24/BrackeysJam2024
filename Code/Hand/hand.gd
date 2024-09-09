@@ -17,28 +17,19 @@ enum State {
 var current_state:State = State.OPEN
 var body_part:CatPart
 var backup_part:CatPart
+var fully_exit:bool = true
 var rubbing:bool = false
 var in_area:bool = false
-var good_timer:float = 0
-var bad_timer:float = 0
-var rub_multiplier:float = 1
-var released_multiplier:float = 5
-var rub_bad_multiplier:float = 3
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_pressed("interact") and body_part != null:
+	if Input.is_action_pressed("interact"):
+		current_state = State.FULL_HAND
 		rubbing = true
 	
-	if Input.is_action_just_released("interact") and rubbing:
+	if Input.is_action_just_released("interact"):
+		current_state = State.OPEN
 		rubbing = false
-		good_timer = 0
-		bad_timer = 0
-		body_part = null
-		if backup_part != null: 
-			body_part = backup_part
-			area_label.text = body_part.name
-			in_area = true
-		timer_label.set_deferred("theme_type_variation", "")
+		Signals.HandReleased.emit()
 
 func _ready() -> void:
 	area_entered.connect(_area_entered)
@@ -50,38 +41,31 @@ func _process(delta: float) -> void:
 
 	speed_label.text = str(Input.get_last_mouse_velocity())
 	
-	if Input.get_last_mouse_velocity() != Vector2.ZERO and in_area and rubbing:
-		good_timer += delta
-		timer_label.text = str(good_timer)
-		if good_timer >= min_time: 
-			timer_label.set_deferred("theme_type_variation", "GoodRubLabel")
-			Signals.UpdateStimuli.emit(delta * rub_multiplier)
-	elif Input.get_last_mouse_velocity() != Vector2.ZERO and not in_area and rubbing:
-		bad_timer += delta
-		if bad_timer >= bad_min_timer: timer_label.set_deferred("theme_type_variation", "BadRubLabel")
-		Signals.UpdateStimuli.emit(delta * rub_bad_multiplier)
-	elif Input.get_last_mouse_velocity() == Vector2.ZERO and in_area and rubbing:
-		bad_timer += delta
-		if bad_timer >= bad_min_timer: timer_label.set_deferred("theme_type_variation", "BadRubLabel")
-		Signals.UpdateStimuli.emit(delta * rub_bad_multiplier)
-	elif not in_area and not rubbing:
-			Signals.UpdateStimuli.emit(-delta * released_multiplier)
-		
+	if fully_exit:
+		if body_part == null:
+			if overlaps_area(backup_part):
+				body_part = backup_part
+				in_area = true
+				area_label.text = body_part.name
+	
+	if rubbing:
+		if body_part != null:
+			area_label.text = body_part.name
+			body_part.pet(Input.get_last_mouse_velocity(), in_area)
 
 func _area_entered(_area) -> void:
-	if _area is CatPart: backup_part = _area
-	if _area is CatPart and not rubbing:
-		body_part = _area as CatPart
-		area_label.text = _area.name
-		in_area = true
-	elif _area is CatPart and rubbing:
-		in_area = true
+	if _area is CatPart:
+		if fully_exit:
+			body_part = _area as CatPart
+			area_label.text = _area.name
+			in_area = true
+			fully_exit = false
+		backup_part = _area as CatPart
+
 
 func _area_exited(_area) -> void:
-	if backup_part == _area: backup_part = null
-	if body_part == _area and not rubbing:
+	if _area == body_part:
+		fully_exit = true 
 		body_part = null
+		in_area = false
 		area_label.text = "none"
-		in_area = false
-	elif body_part == _area and rubbing:
-		in_area = false

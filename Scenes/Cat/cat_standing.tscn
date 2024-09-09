@@ -40,21 +40,33 @@ height = 162.635
 
 [node name="Cat" type="Node2D"]
 script = ExtResource("1_6q221")
+no_hand_mood_multiplier = 0.5
+no_hand_stim_multiplier = 7.5
+outside_stim_reducer = 2.0
+perfect_pet_lengths = Array[float]([250000.0, 5e+06])
 
 [node name="cat_sprite" type="Sprite2D" parent="."]
 scale = Vector2(6.08, 2.24)
 texture = ExtResource("1_2w1yj")
 
 [node name="head" type="Area2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_2s434")
+positive_multiplier = 2.0
+negative_multiplier = 2.0
+stimuli_multiplier = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="head"]
 position = Vector2(-366, -137)
 shape = SubResource("CircleShape2D_k2f8n")
 
 [node name="back" type="Area2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_2s434")
-body_part = 4
+body_part = 1
+positive_multiplier = 3.0
+negative_multiplier = 2.0
+stimuli_multiplier = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="back"]
 position = Vector2(1, -83)
@@ -62,16 +74,24 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_tphje")
 
 [node name="butt" type="Area2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_2s434")
-body_part = 5
+body_part = 2
+positive_multiplier = 5.0
+negative_multiplier = 5.0
+stimuli_multiplier = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="butt"]
 position = Vector2(319, -80)
 shape = SubResource("CircleShape2D_nbtcm")
 
 [node name="paws" type="Area2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_2s434")
-body_part = 8
+body_part = 5
+positive_multiplier = 1.0
+negative_multiplier = 3.0
+stimuli_multiplier = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="paws"]
 position = Vector2(-403, 148)
@@ -94,8 +114,12 @@ rotation = -0.523599
 shape = SubResource("CapsuleShape2D_xlsy5")
 
 [node name="tummy" type="Area2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_2s434")
-body_part = 7
+body_part = 4
+positive_multiplier = 5.0
+negative_multiplier = 1.0
+stimuli_multiplier = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tummy"]
 position = Vector2(1, 84)
@@ -103,9 +127,13 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_5pk0r")
 
 [node name="tail" type="Area2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(1, 0)
 script = ExtResource("2_2s434")
-body_part = 6
+body_part = 3
+positive_multiplier = 1.0
+negative_multiplier = 3.0
+stimuli_multiplier = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tail"]
 position = Vector2(430, -190)

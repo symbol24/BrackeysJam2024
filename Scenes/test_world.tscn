@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://mo34bgvduo4y"]
+[gd_scene load_steps=10 format=3 uid="uid://mo34bgvduo4y"]
 
 [ext_resource type="PackedScene" uid="uid://dwps4jjnyb2rl" path="res://Scenes/Hand/hand.tscn" id="1_1hf1i"]
 [ext_resource type="PackedScene" uid="uid://d38lf1ga8aeq3" path="res://Scenes/Cat/cat_standing.tscn" id="1_mnfpb"]
 [ext_resource type="Script" path="res://Code/UI/Debug/stimuli.gd" id="3_edda4"]
+[ext_resource type="Script" path="res://Code/UI/Debug/mood_progres_bar.gd" id="4_853ah"]
 [ext_resource type="Script" path="res://Code/UI/Debug/mood_label.gd" id="4_s71eq"]
+[ext_resource type="Script" path="res://Code/UI/Debug/target_part.gd" id="5_vx6ib"]
+[ext_resource type="Script" path="res://Code/UI/Debug/pet_label.gd" id="6_m06gv"]
+[ext_resource type="Script" path="res://Code/UI/Debug/stim_multi_label.gd" id="8_3ngsv"]
+[ext_resource type="Script" path="res://Code/UI/Debug/mood_multi_label.gd" id="9_saief"]
 
 [node name="test_world" type="Node2D"]
 
@@ -17,39 +22,90 @@ bad_min_timer = 0.5
 
 [node name="stimuli" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(200, 0)
-offset_left = -466.0
-offset_top = -302.0
-offset_right = -266.0
-offset_bottom = -275.0
+offset_left = -534.0
+offset_top = -307.0
+offset_right = -334.0
+offset_bottom = -280.0
 script = ExtResource("3_edda4")
+
+[node name="mood" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(200, 0)
+offset_left = -530.0
+offset_top = -260.0
+offset_right = -526.0
+offset_bottom = -233.0
+script = ExtResource("4_853ah")
 
 [node name="mouse_speed" type="Label" parent="."]
 unique_name_in_owner = true
-offset_left = -1.0
-offset_top = -289.0
-offset_right = 54.0
-offset_bottom = -266.0
+offset_left = 291.0
+offset_top = -290.0
+offset_right = 346.0
+offset_bottom = -267.0
 text = "000000
 "
 
 [node name="area_label" type="Label" parent="."]
 unique_name_in_owner = true
-offset_top = -257.0
-offset_right = 40.0
-offset_bottom = -234.0
+offset_left = 292.0
+offset_top = -258.0
+offset_right = 332.0
+offset_bottom = -235.0
 text = "none"
 
 [node name="mood_label" type="Label" parent="."]
-offset_left = -228.0
-offset_top = -302.0
-offset_right = -159.0
-offset_bottom = -279.0
+offset_left = 64.0
+offset_top = -303.0
+offset_right = 151.0
+offset_bottom = -280.0
 text = "mood label"
 script = ExtResource("4_s71eq")
 
 [node name="timer_label" type="Label" parent="."]
 unique_name_in_owner = true
-offset_top = -193.0
-offset_right = 40.0
-offset_bottom = -170.0
+offset_left = 292.0
+offset_top = -194.0
+offset_right = 332.0
+offset_bottom = -171.0
 text = "000"
+
+[node name="target_part" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 68.0
+offset_top = -267.0
+offset_right = 108.0
+offset_bottom = -244.0
+text = "part"
+script = ExtResource("5_vx6ib")
+
+[node name="pet_label" type="Label" parent="."]
+offset_left = 67.0
+offset_top = -226.0
+offset_right = 140.0
+offset_bottom = -203.0
+text = "being pet"
+script = ExtResource("6_m06gv")
+
+[node name="stim_multi_label" type="Label" parent="."]
+offset_left = -285.0
+offset_top = -303.0
+offset_right = -245.0
+offset_bottom = -280.0
+text = "stim"
+script = ExtResource("8_3ngsv")
+
+[node name="mood_multi_label" type="Label" parent="."]
+offset_left = -285.0
+offset_top = -257.0
+offset_right = -240.0
+offset_bottom = -234.0
+text = "mood"
+script = ExtResource("9_saief")
+
+[node name="delta_label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -180.0
+offset_top = -302.0
+offset_right = -140.0
+offset_bottom = -279.0
+text = "delta"
