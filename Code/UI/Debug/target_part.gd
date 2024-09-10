@@ -5,17 +5,19 @@ func _ready() -> void:
 	Signals.TargetUpdated.connect(_update_part)
 
 func _update_part(_value:CatPart.Part) -> void:
+	var target:String = ""
 	match _value:
 		CatPart.Part.HEAD:
-			text = "HEAD"
+			target = "HEAD"
 		CatPart.Part.BACK:
-			text = "BACK"
+			target = "BACK"
 		CatPart.Part.BUTT:
-			text = "BUTT"
+			target = "BUTT"
 		CatPart.Part.TAIL:
-			text = "TAIL"
+			target = "TAIL"
 		CatPart.Part.TUMMY:
-			text = "TUMMY"
+			target = "TUMMY"
 		CatPart.Part.PAWS:
-			text = "PAWS"
-		
+			target = "PAWS"
+	
+	text = "Target part: %s" % target
