@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AudioFile" load_steps=3 format=3 uid="uid://d3qekf7q2yp05"]
+
+[ext_resource type="Script" path="res://addons/AudioBySymbol/Code/Audio/audio_file.gd" id="1_v67dq"]
+[ext_resource type="AudioStream" uid="uid://beynw52o4dfck" path="res://Audio/Music/thinking_and_tinkeringOGG.ogg" id="1_vo3rs"]
+
+[resource]
+script = ExtResource("1_v67dq")
+files = Array[AudioStream]([ExtResource("1_vo3rs")])
+volume_db = -10.0
+min_pitch_scale = 1.0
+max_pitch_scale = 1.0
+is_music = true
+always_play = false
+is_unique = true

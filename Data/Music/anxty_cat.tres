@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AudioFile" load_steps=3 format=3 uid="uid://de4apflk5p8u4"]
+
+[ext_resource type="Script" path="res://addons/AudioBySymbol/Code/Audio/audio_file.gd" id="1_50tih"]
+[ext_resource type="AudioStream" uid="uid://b1p736ijielxq" path="res://Audio/Music/spy_showdownOGG.ogg" id="1_rbr13"]
+
+[resource]
+script = ExtResource("1_50tih")
+files = Array[AudioStream]([ExtResource("1_rbr13")])
+volume_db = -10.0
+min_pitch_scale = 1.0
+max_pitch_scale = 1.0
+is_music = true
+always_play = false
+is_unique = false

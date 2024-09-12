@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://1vfq0eoga4ci"]
+
+[ext_resource type="Script" path="res://Code/Cat/cat_reactions.gd" id="1_advc8"]
+
+[node name="CatReactions" type="Node2D"]
+script = ExtResource("1_advc8")

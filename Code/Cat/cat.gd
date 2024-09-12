@@ -39,6 +39,7 @@ enum Reaction {
 @export var over_stimulated_delay:float = 1
 @export var attack_damage_range:Array[int] = [1, 10]
 @export var reaction_timer_range:Array[float] = [1, 10]
+@export var overstimated_timer_delay:float = 20
 
 # Debug
 @onready var target_part_label: Label = %target_part
@@ -125,28 +126,38 @@ var reaction_timer:float = 0.0:
 			else:
 				reaction_delay = 3
 				push_error("Cat reaction timer range does not contain 2 value.")
-				
+
+# Overstimulation Timer
+var overstimulated:bool = false:
+	set(_value):
+		overstimulated = _value
+		if not overstimulated: overstimulated_timer = 0.0
+var overstimulated_timer:float = 0.0:
+	set(_value):
+		overstimulated_timer = _value 
+		if overstimulated_timer >= overstimated_timer_delay:
+			overstimulated = false
+			Signals.StormAttack.emit(100)
+
 # Other
 var pet_signal_sent:bool = false
+var perfect_pet_signal_sent:bool = false
 
 
 func _ready() -> void:
 	Signals.HandReleased.connect(_pet_stopped)
 	if not target_part_label.is_node_ready(): await target_part_label.ready
 	target_part = _update_target(target_part)
-	
 
 
 func _process(_delta: float) -> void:
 	if GM.playing:
 		current_mood = _check_mood(mood_percent, stimulation)
-		
-		if run_target_timer:
-			timer += _delta
-			
-		if run_reaction_timer:
-			reaction_timer += _delta
-		
+
+		if run_target_timer: timer += _delta
+		if run_reaction_timer: reaction_timer += _delta
+		if overstimulated: overstimulated_timer += _delta
+
 		mood_percent += _delta * mood_multiplier
 		stimulation += _delta * stim_multiplier
 
@@ -155,6 +166,7 @@ func pet_part(_body_part:CatPart, _mouse_vel:Vector2, _in_area:bool) -> void:
 	if !pet_signal_sent:
 		Signals.PettingStarted.emit()
 		pet_signal_sent = true
+	Signals.NoPetToggle.emit(false)
 	run_reaction_timer = true
 	being_pet = true
 	var mood_multi:float = 1.0
@@ -173,6 +185,9 @@ func pet_part(_body_part:CatPart, _mouse_vel:Vector2, _in_area:bool) -> void:
 			#print("in perfect pet range")
 			if mood_multi > 0.0 and _mouse_vel != Vector2.ZERO:
 				mood_multi += perfect_pet_bonus
+				if not perfect_pet_signal_sent: 
+					Signals.PlayPerfectPet.emit()
+					perfect_pet_signal_sent = true
 			
 		delta_label.text = str((lengths[-1] - lengths[0])/2)
 	
@@ -181,12 +196,14 @@ func pet_part(_body_part:CatPart, _mouse_vel:Vector2, _in_area:bool) -> void:
 
 
 func _pet_stopped() -> void:
+	perfect_pet_signal_sent = false
 	being_pet = false
 	run_reaction_timer = false
 	hand_velocity = Vector2.ZERO
 	stim_multiplier = -no_hand_stim_multiplier
 	mood_multiplier = -no_hand_mood_multiplier
 	lengths.clear()
+	Signals.NoPetToggle.emit(true)
 
 
 func _update_target(_current:CatPart.Part) -> CatPart.Part:
@@ -300,5 +317,8 @@ func _check_mood(_mood_perc:float, _stimuli:float) -> Mood:
 		elif _stimuli >= 40 and _stimuli < 60: new_mood = Mood.CONTENT
 		elif _stimuli >= 60 and _stimuli < 80: new_mood = Mood.CONTENT
 		else: new_mood = Mood.SLIGHTLY_HAPPY
+	
+	if new_mood == Mood.OVERSTIMULATED: overstimulated = true
+	else: overstimulated = false
 	
 	return new_mood

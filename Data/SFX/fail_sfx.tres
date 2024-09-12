@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AudioFile" load_steps=3 format=3 uid="uid://mkbsbuu1exqj"]
+
+[ext_resource type="Script" path="res://addons/AudioBySymbol/Code/Audio/audio_file.gd" id="1_hvjrr"]
+[ext_resource type="AudioStream" uid="uid://d3gw1gicj6k6g" path="res://Audio/SFX/Game Over.wav" id="1_xa5cs"]
+
+[resource]
+script = ExtResource("1_hvjrr")
+files = Array[AudioStream]([ExtResource("1_xa5cs")])
+volume_db = -10.0
+min_pitch_scale = 1.0
+max_pitch_scale = 1.0
+is_music = false
+always_play = false
+is_unique = false

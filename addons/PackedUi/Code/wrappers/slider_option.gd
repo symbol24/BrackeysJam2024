@@ -11,6 +11,8 @@ var dragging_timer:float = 0.0:
 			dragging_timer = 0.0
 			_update_value()
 var dragging_delay:float = 0.2
+var use_sam:bool = false
+var audio:Node
 
 func _ready() -> void:
 	slider.drag_ended.connect(_drag_ended)
@@ -21,13 +23,19 @@ func _physics_process(delta: float) -> void:
 		dragging_timer += delta
 
 func _update_value() -> void:
-	UI.OptionUpdated.emit(id, slider.value)
-	print("UI.OptionUpdated.emit(id, slider.value)")
+	if use_sam:
+		audio.BusVolumeUpdate.emit(id, slider.value)
+	else:
+		UI.OptionUpdated.emit(id, slider.value)
+		print("UI.OptionUpdated.emit(id, slider.value)")
 
 func _drag_ended(_value_changed:bool) -> void:
 	if _value_changed:
-		UI.OptionUpdated.emit(id, slider.value)
-		print("UI.OptionUpdated.emit(id, slider.value)")
+		if use_sam:
+			audio.BusVolumeUpdate.emit(id, slider.value)
+		else:
+			UI.OptionUpdated.emit(id, slider.value)
+			print("UI.OptionUpdated.emit(id, slider.value)")
 	if dragging:
 		dragging = false
 
@@ -39,7 +47,8 @@ func set_slider(_name:String, _using_sam:bool, _slider_value:float = 1.0) -> flo
 	id = _name
 	name_label.text = _name
 	if _using_sam:
-		var audio = get_tree().get_first_node_in_group("SimpleAudioManager")
+		use_sam = _using_sam
+		audio = get_tree().get_first_node_in_group("SimpleAudioManager")
 		if audio != null:
 			match _name:
 				"Master":

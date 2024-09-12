@@ -132,6 +132,9 @@ func _ready() -> void:
 		options_page_title.text = "[center]"+menu_name+"[/center]"
 
 	if display_audio_options:
+		var audio = get_tree().get_first_node_in_group("SimpleAudioManager")
+		if not audio.is_node_ready():
+			await audio.ready
 		_build_sound_options(audio_section_name, bus_names)
 
 	if display_display_options:
@@ -165,7 +168,7 @@ func _toggle_control(_id:String, _value:bool, _previous:String = "") -> void:
 			if _value:
 				option_back_btn.grab_focus()
 		else:
-			set_deferred("visible", not _value)
+			set_deferred("visible", false)
 
 
 func _build_sound_options(_name:String, _buses:Array[String]) -> void:

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://n42xjoda2lxc"]
+
+[ext_resource type="Script" path="res://Code/UI/game_timer.gd" id="1_6d67q"]
+
+[node name="game_timer" type="Label"]
+offset_left = -547.0
+offset_top = 20.0
+offset_right = -507.0
+offset_bottom = 43.0
+text = "00:00.000"
+script = ExtResource("1_6d67q")

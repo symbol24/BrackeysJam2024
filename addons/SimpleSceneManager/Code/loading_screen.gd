@@ -14,6 +14,7 @@ var size_check_delay:float = 0.5
 @onready var percent: RichTextLabel = %percent
 
 func _ready() -> void:
+	hide()
 	last_size = _size_check(last_size)
 	Manager.ToggleLoadingScreen.connect(_toggle_loading_screen)
 	Manager.LoadingPercentUpdated.connect(_update_percent)

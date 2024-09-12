@@ -2,6 +2,8 @@ class_name MainMenu extends SMenuControl
 
 signal ButtonPressed(id:String)
 
+const MAIN_MENU_MUSIC = preload("res://Data/Music/main_menu_music.tres")
+
 ## Sets the text of the game title lavel on runtime. BBCode is accepted.
 @export var game_title:String = "Game Title Here"
 ## Listing the menu buttons here will create buttons on runtime in the Main Menu. Pressing the button emits a signal (ButtonPressed) with the id listed here.
@@ -21,7 +23,7 @@ func _ready() -> void:
 	if not UI.is_node_ready():
 		await UI.ready
 		
-	#_set_game_title(game_title)
+	_set_game_title(tr(ProjectSettings.get_setting("application/config/name")))
 	game_title_label.custom_minimum_size.y = UI.height/3
 	menu_button_vbox.custom_minimum_size.x = UI.width/3
 	hbox_seperator_01.custom_minimum_size.x = UI.width/3
@@ -31,9 +33,11 @@ func _ready() -> void:
 	if not button_list.is_empty() and not button_list[-1].is_node_ready():
 		await button_list[-1].ready
 
+
 func _set_game_title(_value:String = "") -> void:
 	game_title_label.text = "[center]"+_value+"[/center]"
 	UI.game_name = _value
+
 
 func _make_buttons(_list:Array[String]) -> Array[MainMenuButton]:
 	var buttons:Array[MainMenuButton] = []
@@ -65,6 +69,7 @@ func _make_buttons(_list:Array[String]) -> Array[MainMenuButton]:
 		x += 1
 	return buttons
 
+
 func _toggle_control(_id:String, _value:bool, _previous:String = "") -> void:
 	if id == "":
 		push_error(name, " does not have an id set.")
@@ -73,10 +78,12 @@ func _toggle_control(_id:String, _value:bool, _previous:String = "") -> void:
 		if _id == id:
 			set_deferred("visible", _value)
 			if _value:
+				Audio.play_audio(MAIN_MENU_MUSIC)
 				if not button_list.is_empty():
 					button_list[0].grab_focus()
 		else:
-			set_deferred("visible", not _value)
+			set_deferred("visible", false)
+
 
 func button_pressed(_id:String) -> void:
 	UI.ButtonPressed.emit(_id.to_lower(), id)

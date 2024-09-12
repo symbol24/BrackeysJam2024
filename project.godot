@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Signals="*res://Code/Autoloads/signals.gd"
 GM="*res://Code/Autoloads/game_manager.gd"
+Audio="*res://addons/AudioBySymbol/Code/Autoloads/audio_autoload.gd"
 UI="*res://addons/PackedUi/UI/UI.tscn"
 Manager="*res://addons/SimpleSceneManager/Scenes/scene_manager.tscn"
 
@@ -34,7 +35,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/PackedUi/plugin.cfg", "res://addons/SimpleSceneManager/plugin.cfg")
+enabled=PackedStringArray("res://addons/AudioBySymbol/plugin.cfg", "res://addons/PackedUi/plugin.cfg", "res://addons/SimpleSceneManager/plugin.cfg")
 
 [gui]
 
@@ -55,5 +56,6 @@ pause={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

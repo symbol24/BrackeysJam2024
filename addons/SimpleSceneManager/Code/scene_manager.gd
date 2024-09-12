@@ -85,3 +85,4 @@ func _complete_load() -> void:
 	ToggleLoadingScreen.emit(false)
 	UI.TogglePauseGame.emit(false)
 	Signals.TogglePlaying.emit(true)
+	UI.ToggleUi.emit("player_ui", true, "player_ui")

@@ -9,6 +9,7 @@ func _ready() -> void:
 	size.x = UI.width
 	size.y = UI.height
 	UI.ToggleUi.connect(_toggle_control)
+	hide()
 	
 func _toggle_control(_id:String, _value:bool, _previous:String = "") -> void:
 	if id == "":
@@ -18,5 +19,5 @@ func _toggle_control(_id:String, _value:bool, _previous:String = "") -> void:
 		if _id == id:
 			set_deferred("visible", _value)
 		else:
-			set_deferred("visible", not _value)
+			set_deferred("visible", false)
 	

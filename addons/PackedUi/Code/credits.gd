@@ -79,7 +79,7 @@ func _toggle_control(_id:String, _value:bool, _previous:String = "") -> void:
 				if auto_scroll:
 					scroll_wait = true
 		else:
-			set_deferred("visible", not _value)
+			set_deferred("visible", false)
 
 
 func _scroll_ended() -> void:

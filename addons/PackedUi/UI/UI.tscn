@@ -1,12 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://bd3dj73fu4rt6"]
+[gd_scene load_steps=22 format=3 uid="uid://bd3dj73fu4rt6"]
 
 [ext_resource type="Script" path="res://addons/PackedUi/Code/ui.gd" id="1_j1lf8"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/main_menu.gd" id="2_dhl62"]
 [ext_resource type="Theme" uid="uid://cpqt1hqsijy37" path="res://addons/PackedUi/default_theme.tres" id="3_ohvov"]
+[ext_resource type="PackedScene" uid="uid://n42xjoda2lxc" path="res://Scenes/game_timer.tscn" id="4_d2ias"]
+[ext_resource type="Resource" uid="uid://b8vibxevek4jd" path="res://Data/SFX/attack_hit.tres" id="4_pajaf"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/options_menu.gd" id="4_wx7w4"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/credits.gd" id="5_6nx8t"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/credits_section_data.gd" id="6_86k27"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/player_ui.gd" id="6_im37q"]
+[ext_resource type="Shader" path="res://Data/shaker.gdshader" id="6_j4lb2"]
 [ext_resource type="Resource" uid="uid://cj8cddje77ep4" path="res://addons/PackedUi/Credit Datas/demo_data.tres" id="7_5cen7"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/pause_menu.gd" id="7_r3cjq"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/result_screen.gd" id="8_p1pvi"]
@@ -14,23 +17,67 @@
 [ext_resource type="Script" path="res://addons/PackedUi/Code/popups.gd" id="9_y8v47"]
 [ext_resource type="Texture2D" uid="uid://b7kef1xa207ho" path="res://icon.svg" id="13_vydkj"]
 [ext_resource type="Texture2D" uid="uid://4fmfjwd7xr7l" path="res://addons/PackedUi/popup_icon_warning.png" id="14_8eegs"]
+[ext_resource type="Script" path="res://Code/UI/final_time_label.gd" id="15_c8w5w"]
+[ext_resource type="Resource" uid="uid://bl6yhrvc062le" path="res://Data/Music/fail_music.tres" id="16_vavc4"]
+[ext_resource type="Resource" uid="uid://mkbsbuu1exqj" path="res://Data/SFX/fail_sfx.tres" id="16_wqgfk"]
 
-[node name="Ui" type="CanvasLayer"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xbhe"]
+shader = ExtResource("6_j4lb2")
+shader_parameter/ShakeStrength = 0.0
+shader_parameter/FactorA = Vector2(100, 100)
+shader_parameter/FactorB = Vector2(1, 1)
+shader_parameter/magnitude = Vector2(0.01, 0.01)
+
+[node name="Ui" type="CanvasLayer" groups=["symbol24_plugin"]]
 process_mode = 3
 script = ExtResource("1_j1lf8")
 default_theme = ExtResource("3_ohvov")
 
-[node name="PlayerUI" type="Control" parent="." groups=["PlayerUI"]]
+[node name="PlayerUI" type="Control" parent="." groups=["PlayerUI", "symbol24_plugin"]]
 visible = false
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 script = ExtResource("6_im37q")
+hit_sfx = ExtResource("4_pajaf")
 id = "player_ui"
 
-[node name="MainMenu" type="Control" parent="." node_paths=PackedStringArray("background") groups=["MainMenu"]]
+[node name="game_timer" parent="PlayerUI" instance=ExtResource("4_d2ias")]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 343.0
+offset_right = 96.0
+offset_bottom = 366.0
+
+[node name="atk_color" type="ColorRect" parent="PlayerUI"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+color = Color(0.442501, 7.58059e-07, 1.44392e-07, 0.619608)
+
+[node name="attack_sprite" type="Sprite2D" parent="PlayerUI"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(386, 272)
+texture = ExtResource("13_vydkj")
+
+[node name="shake_rect" type="ColorRect" parent="PlayerUI"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_0xbhe")
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="MainMenu" type="Control" parent="." node_paths=PackedStringArray("background") groups=["MainMenu", "symbol24_plugin"]]
 visible = false
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 3
@@ -95,7 +142,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="OptionsMenu" type="Control" parent="." node_paths=PackedStringArray("background") groups=["OptionsMenu"]]
+[node name="OptionsMenu" type="Control" parent="." node_paths=PackedStringArray("background") groups=["OptionsMenu", "symbol24_plugin"]]
 visible = false
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 3
@@ -104,7 +151,7 @@ offset_right = 1280.0
 offset_bottom = 720.0
 script = ExtResource("4_wx7w4")
 menu_name = "Settings"
-use_simple_audio_manager = false
+confirm_on_exit = true
 background_color = Color(0.390689, 0.491481, 0.64164, 1)
 background = NodePath("options_background")
 id = "settings"
@@ -192,7 +239,7 @@ offset_bottom = 683.0
 theme = ExtResource("3_ohvov")
 text = "Back"
 
-[node name="Credits" type="Control" parent="." node_paths=PackedStringArray("background") groups=["Credits"]]
+[node name="Credits" type="Control" parent="." node_paths=PackedStringArray("background") groups=["Credits", "symbol24_plugin"]]
 visible = false
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 3
@@ -254,7 +301,7 @@ offset_bottom = 670.0
 theme = ExtResource("3_ohvov")
 text = "Back"
 
-[node name="PauseMenu" type="Control" parent="." node_paths=PackedStringArray("background") groups=["PauseMenu"]]
+[node name="PauseMenu" type="Control" parent="." node_paths=PackedStringArray("background") groups=["PauseMenu", "symbol24_plugin"]]
 visible = false
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 3
@@ -330,7 +377,7 @@ offset_bottom = 670.0
 theme = ExtResource("3_ohvov")
 text = "Main Menu"
 
-[node name="ResultScreen" type="Control" parent="." groups=["ResultScreen"]]
+[node name="ResultScreen" type="Control" parent="." groups=["ResultScreen", "symbol24_plugin"]]
 visible = false
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 3
@@ -338,9 +385,67 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_p1pvi")
+failure_jingle = ExtResource("16_wqgfk")
+result_screen_music = ExtResource("16_vavc4")
 id = "result_screen"
 
-[node name="Popups" type="Control" parent="."]
+[node name="backgorund" type="ColorRect" parent="ResultScreen"]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.158472, 0.158472, 0.158472, 1)
+
+[node name="result" type="Label" parent="ResultScreen"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1280, 100)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("3_ohvov")
+theme_type_variation = &"ResultTitle"
+text = "result"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="return_btn" type="Button" parent="ResultScreen"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_left = 907.0
+offset_top = 571.0
+offset_right = 1107.0
+offset_bottom = 617.0
+theme = ExtResource("3_ohvov")
+text = "Main Menu"
+
+[node name="time_hbox" type="HBoxContainer" parent="ResultScreen"]
+custom_minimum_size = Vector2(1280, 100)
+offset_top = 238.0
+offset_right = 1280.0
+offset_bottom = 338.0
+
+[node name="Label" type="Label" parent="ResultScreen/time_hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_ohvov")
+theme_type_variation = &"FinalTimerLabel"
+text = "Final Time"
+horizontal_alignment = 2
+
+[node name="spacer" type="Control" parent="ResultScreen/time_hbox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="final_time_label" type="Label" parent="ResultScreen/time_hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_ohvov")
+theme_type_variation = &"FinalTimerLabel"
+text = "00:00.000"
+script = ExtResource("15_c8w5w")
+
+[node name="Popups" type="Control" parent="." groups=["symbol24_plugin"]]
 visible = false
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 3

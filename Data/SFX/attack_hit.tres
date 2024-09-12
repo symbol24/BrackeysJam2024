@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="AudioFile" load_steps=7 format=3 uid="uid://b8vibxevek4jd"]
+
+[ext_resource type="AudioStream" uid="uid://de1shb0yuyp7x" path="res://Audio/SFX/Body Hit Impact Combat-001.wav" id="1_526q2"]
+[ext_resource type="Script" path="res://addons/AudioBySymbol/Code/Audio/audio_file.gd" id="1_yfsuc"]
+[ext_resource type="AudioStream" uid="uid://kjwnqqmxjrpj" path="res://Audio/SFX/Body Hit Impact Combat-002.wav" id="2_mhof8"]
+[ext_resource type="AudioStream" uid="uid://cc6wfjp1tc5wy" path="res://Audio/SFX/Body Hit Impact Combat-003.wav" id="3_nb5uy"]
+[ext_resource type="AudioStream" uid="uid://g5qa110r3kfh" path="res://Audio/SFX/Body Hit Impact Combat-004.wav" id="4_do38w"]
+[ext_resource type="AudioStream" uid="uid://dpy33cb7ce147" path="res://Audio/SFX/Body Hit Impact Combat-005.wav" id="5_hw57p"]
+
+[resource]
+script = ExtResource("1_yfsuc")
+files = Array[AudioStream]([ExtResource("1_526q2"), ExtResource("2_mhof8"), ExtResource("3_nb5uy"), ExtResource("4_do38w"), ExtResource("5_hw57p")])
+volume_db = -10.0
+min_pitch_scale = 1.0
+max_pitch_scale = 1.0
+is_music = false
+always_play = false
+is_unique = false

@@ -29,7 +29,7 @@ var game_name:String
 var previous_menu:String
 
 func _ready() -> void:
-	game_name = ProjectSettings.get_setting("application/config/name")
+	#game_name = ProjectSettings.get_setting("application/config/name")
 	window_size = _get_window_size(window_size)
 	width = ProjectSettings.get_setting("display/window/size/viewport_width")
 	height = ProjectSettings.get_setting("display/window/size/viewport_height")

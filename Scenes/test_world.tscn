@@ -1,7 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://mo34bgvduo4y"]
+[gd_scene load_steps=18 format=3 uid="uid://mo34bgvduo4y"]
 
 [ext_resource type="PackedScene" uid="uid://dwps4jjnyb2rl" path="res://Scenes/Hand/hand.tscn" id="1_1hf1i"]
+[ext_resource type="PackedScene" uid="uid://1vfq0eoga4ci" path="res://Scenes/Cat/cat_reactions.tscn" id="1_40oj5"]
 [ext_resource type="PackedScene" uid="uid://d38lf1ga8aeq3" path="res://Scenes/Cat/cat_standing.tscn" id="1_mnfpb"]
+[ext_resource type="Resource" uid="uid://3xsnwss5r4ex" path="res://Data/Music/normal_cat.tres" id="2_pwfb8"]
+[ext_resource type="Resource" uid="uid://de4apflk5p8u4" path="res://Data/Music/anxty_cat.tres" id="3_71651"]
 [ext_resource type="Script" path="res://Code/UI/Debug/stimuli.gd" id="3_edda4"]
 [ext_resource type="PackedScene" uid="uid://csu0colncna1e" path="res://Scenes/Hand/player.tscn" id="3_ee3w2"]
 [ext_resource type="Script" path="res://Code/UI/Debug/mood_progres_bar.gd" id="4_853ah"]
@@ -12,9 +15,14 @@
 [ext_resource type="Script" path="res://Code/UI/Debug/stim_multi_label.gd" id="8_3ngsv"]
 [ext_resource type="Script" path="res://Code/UI/Debug/mood_multi_label.gd" id="9_saief"]
 [ext_resource type="Script" path="res://Code/UI/Debug/player_hp.gd" id="12_mm5fc"]
-[ext_resource type="Script" path="res://Code/UI/game_timer.gd" id="13_qij6d"]
+[ext_resource type="Script" path="res://Code/UI/Debug/cat_attack_test_btn.gd" id="13_askqb"]
+[ext_resource type="Script" path="res://Code/UI/Debug/storm_attack_test.gd" id="14_571vo"]
 
 [node name="test_world" type="Node2D"]
+
+[node name="CatReactions" parent="." instance=ExtResource("1_40oj5")]
+normal_cat_music = ExtResource("2_pwfb8")
+anxty_cat_music = ExtResource("3_71651")
 
 [node name="Cat" parent="." instance=ExtResource("1_mnfpb")]
 position = Vector2(640, 360)
@@ -146,11 +154,20 @@ offset_bottom = -233.0
 text = "player hp"
 script = ExtResource("12_mm5fc")
 
-[node name="game_timer" type="Label" parent="Debug"]
+[node name="cat_attack_test" type="Button" parent="Debug"]
 layout_mode = 0
-offset_left = -547.0
-offset_top = 20.0
-offset_right = -507.0
-offset_bottom = 43.0
-text = "00:00.000"
-script = ExtResource("13_qij6d")
+offset_left = -571.0
+offset_top = 126.0
+offset_right = -563.0
+offset_bottom = 134.0
+text = "Cat Attack"
+script = ExtResource("13_askqb")
+
+[node name="storm_attack_test" type="Button" parent="Debug"]
+layout_mode = 0
+offset_left = -592.0
+offset_top = 172.0
+offset_right = -473.0
+offset_bottom = 203.0
+text = "Cat Storm test"
+script = ExtResource("14_571vo")

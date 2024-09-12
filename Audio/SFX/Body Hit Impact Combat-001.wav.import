@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://de1shb0yuyp7x"
+path="res://.godot/imported/Body Hit Impact Combat-001.wav-d39994b14b35efe1a46cd7501ede917a.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Body Hit Impact Combat-001.wav"
+dest_files=["res://.godot/imported/Body Hit Impact Combat-001.wav-d39994b14b35efe1a46cd7501ede917a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

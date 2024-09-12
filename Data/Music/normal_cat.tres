@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AudioFile" load_steps=3 format=3 uid="uid://3xsnwss5r4ex"]
+
+[ext_resource type="AudioStream" uid="uid://g6ymcmmccn18" path="res://Audio/Music/fancy_seeing_you_hereOGG.ogg" id="1_6sffw"]
+[ext_resource type="Script" path="res://addons/AudioBySymbol/Code/Audio/audio_file.gd" id="1_w4b8s"]
+
+[resource]
+script = ExtResource("1_w4b8s")
+files = Array[AudioStream]([ExtResource("1_6sffw")])
+volume_db = -10.0
+min_pitch_scale = 1.0
+max_pitch_scale = 1.0
+is_music = true
+always_play = false
+is_unique = false
