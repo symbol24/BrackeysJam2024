@@ -3,6 +3,7 @@ class_name CreditsSection extends VBoxContainer
 @onready var section_name: RichTextLabel = %section_name
 @onready var grid_of_names: GridContainer = %grid_of_names
 @onready var grid_of_logos: GridContainer = %grid_of_logos
+@onready var hbox_logos: HBoxContainer = %hbox_logos
 
 func set_section(_section_data:CreditSectionData) -> void:
 	section_name.text = "[center]"+_section_data.section_name+"[/center]"
@@ -33,7 +34,7 @@ func set_section(_section_data:CreditSectionData) -> void:
 		for each:Control in grid_of_logos.get_children():
 			each.custom_minimum_size.y = max_height
 	else:
-		grid_of_logos.hide()
+		hbox_logos.hide()
 	if not _section_data.list_of_names.is_empty():
 		if _section_data.list_of_names.size() < 5:
 			grid_of_names.columns = _section_data.list_of_names.size()

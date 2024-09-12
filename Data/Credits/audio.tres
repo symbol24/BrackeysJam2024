@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_3arte")
-section_name = "audio_section"
+section_name = "Audio"
 logo_images = Array[Resource]([])
-list_of_names = Array[String](["Fablefly Music"])
+list_of_names = Array[String](["Assets from: FableFly Music", "Symbol24"])

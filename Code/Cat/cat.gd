@@ -53,6 +53,16 @@ enum Reaction {
 @onready var tummy: CatPart = %tummy
 @onready var tail: CatPart = %tail
 
+# Highlights
+@onready var head_highlight: Sprite2D = %head_highlight
+@onready var back_highlight: Sprite2D = %back_highlight
+@onready var butt_highlight: Sprite2D = %butt_highlight
+@onready var tail_highlight: Sprite2D = %tail_highlight
+@onready var tummy_highlight: Sprite2D = %tummy_highlight
+@onready var paws_highlight: Sprite2D = %paws_highlight
+@onready var all_highlights:Array[Sprite2D] = [%head_highlight, %back_highlight, %butt_highlight, %tail_highlight, %tummy_highlight, %paws_highlight]
+
+
 # MOOD, STIMULATION AND TARGET PART
 var current_mood:Mood:
 	set(_value):
@@ -71,6 +81,7 @@ var stimulation:float = 0:
 var target_part:CatPart.Part:
 	set(_value):
 		target_part = _value
+		_highlight_part(target_part)
 		Signals.TargetUpdated.emit(target_part)
 var being_pet:bool = false:
 	set(_value):
@@ -232,6 +243,30 @@ func _get_target_part() -> CatPart:
 			pass
 	
 	return to_return
+
+
+func _highlight_part(_part:CatPart.Part) -> void:
+	var to_highlight:Sprite2D
+	match _part:
+		CatPart.Part.HEAD:
+			to_highlight = head_highlight
+		CatPart.Part.BACK:
+			to_highlight = back_highlight
+		CatPart.Part.BUTT:
+			to_highlight = butt_highlight
+		CatPart.Part.PAWS:
+			to_highlight = paws_highlight
+		CatPart.Part.TUMMY:
+			to_highlight = tummy_highlight
+		CatPart.Part.TAIL:
+			to_highlight = tail_highlight
+		_:
+			pass
+	
+	for each in all_highlights:
+		each.hide()
+	
+	if to_highlight != null:	to_highlight.show()
 
 
 func _reaction_check(_mood:Mood) -> Reaction:

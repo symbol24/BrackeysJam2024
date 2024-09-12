@@ -24,19 +24,28 @@ func _ready() -> void:
 func _react(_reaction:Cat.Reaction) -> void:
 	match _reaction:
 		Cat.Reaction.ANGRY_MEOW:
+			print("Playing: Angry Meow")
 			Audio.play_audio(angry_meow)
 		Cat.Reaction.GROWL:
+			print("Playing: growl")
 			Audio.play_audio(growl)
 		Cat.Reaction.HISS:
+			print("Playing: hiss")
 			Audio.play_audio(hiss)
 		Cat.Reaction.CURIOUS_MEOW:
+			print("Playing: Curious Meow")
 			Audio.play_audio(curious_meow)
 		Cat.Reaction.HAPPY_MEOW:
+			print("Playing: Happy Meow")
 			Audio.play_audio(happy_meow)
 		Cat.Reaction.TRILL:
+			print("Playing: Trill")
 			Audio.play_audio(trill)
 		Cat.Reaction.PURR:
+			print("Playing: Purr")
 			Audio.play_audio(purr)
+		_:
+			pass
 
 
 func _change_song(_mood:Cat.Mood) -> void:

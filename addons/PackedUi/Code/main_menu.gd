@@ -23,7 +23,7 @@ func _ready() -> void:
 	if not UI.is_node_ready():
 		await UI.ready
 		
-	_set_game_title(tr(ProjectSettings.get_setting("application/config/name")))
+	#_set_game_title(tr(ProjectSettings.get_setting("application/config/name")))
 	game_title_label.custom_minimum_size.y = UI.height/3
 	menu_button_vbox.custom_minimum_size.x = UI.width/3
 	hbox_seperator_01.custom_minimum_size.x = UI.width/3

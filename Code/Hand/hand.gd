@@ -12,6 +12,7 @@ enum State {
 @onready var speed_label:Label = %mouse_speed
 @onready var area_label: Label = %area_label
 @onready var timer_label: Label = %timer_label
+@onready var sprite: Sprite2D = %sprite
 
 var current_state:State = State.OPEN
 
@@ -25,10 +26,12 @@ var in_area:bool = false
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("interact"):
 		current_state = State.FULL_HAND
+		sprite.frame = 0
 		rubbing = true
 	
 	if Input.is_action_just_released("interact"):
 		current_state = State.OPEN
+		sprite.frame = 1
 		rubbing = false
 		Signals.HandReleased.emit()
 

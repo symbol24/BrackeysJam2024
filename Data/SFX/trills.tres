@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AudioFile" load_steps=5 format=3 uid="uid://30br6gdajgbn"]
+
+[ext_resource type="Script" path="res://addons/AudioBySymbol/Code/Audio/audio_file.gd" id="1_0kmjf"]
+[ext_resource type="AudioStream" uid="uid://dnw4yqsmh7q53" path="res://Audio/SFX/trill1.ogg" id="1_4ncha"]
+[ext_resource type="AudioStream" uid="uid://bej433q4egcoj" path="res://Audio/SFX/trill2.ogg" id="2_77m7v"]
+[ext_resource type="AudioStream" uid="uid://34a75wlfwdrd" path="res://Audio/SFX/trill3.ogg" id="3_xgcca"]
+
+[resource]
+script = ExtResource("1_0kmjf")
+files = Array[AudioStream]([ExtResource("1_4ncha"), ExtResource("2_77m7v"), ExtResource("3_xgcca")])
+volume_db = 0.0
+min_pitch_scale = 1.0
+max_pitch_scale = 1.0
+is_music = false
+always_play = false
+is_unique = false

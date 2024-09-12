@@ -104,7 +104,7 @@ var new_language:int
 # If changes are made other than resizing, a popup is displayed on exit to confirm changes.
 var changes_made:bool = false
 
-# Loacalition string ids
+# Localizaion string ids
 var resize_title:String = tr("resize_title")
 var resize_text:String = tr("resize_text")
 var changes_title:String = tr("changes_title")
@@ -129,7 +129,7 @@ func _ready() -> void:
 		option_back_btn.position = (Vector2(UI.width, UI.height)*0.95) - option_back_btn.size
 	
 	if menu_name:
-		options_page_title.text = "[center]"+menu_name+"[/center]"
+		options_page_title.text = tr(menu_name)
 
 	if display_audio_options:
 		var audio = get_tree().get_first_node_in_group("SimpleAudioManager")

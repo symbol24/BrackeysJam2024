@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CreditSectionData" load_steps=2 format=3 uid="uid://bomfekyi5sese"]
+
+[ext_resource type="Script" path="res://addons/PackedUi/Code/credits_section_data.gd" id="1_dvhvu"]
+
+[resource]
+script = ExtResource("1_dvhvu")
+section_name = "Art - Programming - Design"
+logo_images = Array[Resource]([])
+list_of_names = Array[String](["Symbol24"])

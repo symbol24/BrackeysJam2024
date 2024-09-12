@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dwps4jjnyb2rl"]
 
 [ext_resource type="Script" path="res://Code/Hand/hand.gd" id="1_rswyt"]
-[ext_resource type="Texture2D" uid="uid://b7kef1xa207ho" path="res://icon.svg" id="2_yvnfd"]
+[ext_resource type="Texture2D" uid="uid://b0e10cbyi0d3v" path="res://Textures/hands.png" id="2_sb0ti"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b2sc5"]
 radius = 31.0644
@@ -10,8 +10,10 @@ radius = 31.0644
 script = ExtResource("1_rswyt")
 
 [node name="sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_yvnfd")
+unique_name_in_owner = true
+texture = ExtResource("2_sb0ti")
+vframes = 2
+frame = 1
 
 [node name="collider" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true

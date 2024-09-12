@@ -1,42 +1,52 @@
-[gd_scene load_steps=13 format=3 uid="uid://d38lf1ga8aeq3"]
+[gd_scene load_steps=20 format=3 uid="uid://d38lf1ga8aeq3"]
 
-[ext_resource type="Texture2D" uid="uid://b7kef1xa207ho" path="res://icon.svg" id="1_2w1yj"]
 [ext_resource type="Script" path="res://Code/Cat/cat.gd" id="1_6q221"]
 [ext_resource type="Script" path="res://Code/Cat/cat_part.gd" id="2_2s434"]
+[ext_resource type="Texture2D" uid="uid://dwnkr2ov4qmle" path="res://Textures/cat.png" id="2_7r7yf"]
+[ext_resource type="Texture2D" uid="uid://c3pufuidjkpal" path="res://Textures/head_highlight.png" id="4_5hpbc"]
+[ext_resource type="Texture2D" uid="uid://dvhqhccajhqtj" path="res://Textures/back_highlight.png" id="5_t0f0q"]
+[ext_resource type="Texture2D" uid="uid://dkuep4tltluh2" path="res://Textures/butt_highlight.png" id="6_hyq3t"]
+[ext_resource type="Texture2D" uid="uid://dt7qbm55frtdg" path="res://Textures/tail_highlight.png" id="7_fvrtw"]
+[ext_resource type="Texture2D" uid="uid://d26tpq3p4ol4s" path="res://Textures/tummy_highlight.png" id="8_wx01s"]
+[ext_resource type="Texture2D" uid="uid://dwy775jq8go7s" path="res://Textures/paws_highlight.png" id="9_mjyts"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k2f8n"]
-radius = 121.598
+radius = 105.233
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tphje"]
 radius = 58.0
-height = 484.0
+height = 400.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nbtcm"]
-radius = 69.029
+radius = 77.026
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ugvbo"]
 radius = 28.9964
-height = 171.529
+height = 227.277
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u0ugj"]
-radius = 27.1846
-height = 162.969
+radius = 33.9461
+height = 181.391
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_444eq"]
-radius = 28.7883
-height = 174.357
+radius = 48.2771
+height = 228.17
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xlsy5"]
-radius = 25.4186
-height = 173.315
+radius = 41.2661
+height = 197.941
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5pk0r"]
-radius = 57.0
-height = 508.0
+radius = 44.0
+height = 376.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wo7al"]
-radius = 12.7279
-height = 162.635
+radius = 34.6483
+height = 199.614
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sm5rx"]
+radius = 34.0
+height = 122.0
 
 [node name="Cat" type="Node2D"]
 script = ExtResource("1_6q221")
@@ -45,24 +55,28 @@ no_hand_stim_multiplier = 7.5
 outside_stim_reducer = 2.0
 perfect_pet_bonus = 2.0
 perfect_pet_lengths = Array[float]([250000.0, 5e+06])
+reaction_timer_range = Array[float]([1.0, 5.0])
+overstimated_timer_delay = 10.0
 
 [node name="cat_sprite" type="Sprite2D" parent="."]
-scale = Vector2(6.08, 2.24)
-texture = ExtResource("1_2w1yj")
+texture = ExtResource("2_7r7yf")
+metadata/_edit_lock_ = true
 
 [node name="head" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("2_2s434")
 positive_multiplier = 2.0
 negative_multiplier = 2.0
 stimuli_multiplier = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="head"]
-position = Vector2(-366, -137)
+position = Vector2(-337, -145)
 shape = SubResource("CircleShape2D_k2f8n")
 
 [node name="back" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("2_2s434")
 body_part = 1
 positive_multiplier = 3.0
@@ -70,12 +84,13 @@ negative_multiplier = 2.0
 stimuli_multiplier = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="back"]
-position = Vector2(1, -83)
+position = Vector2(-50, -61)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_tphje")
 
 [node name="butt" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("2_2s434")
 body_part = 2
 positive_multiplier = 5.0
@@ -83,11 +98,12 @@ negative_multiplier = 5.0
 stimuli_multiplier = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="butt"]
-position = Vector2(319, -80)
+position = Vector2(224, -23)
 shape = SubResource("CircleShape2D_nbtcm")
 
 [node name="paws" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("2_2s434")
 body_part = 5
 positive_multiplier = 1.0
@@ -95,27 +111,28 @@ negative_multiplier = 3.0
 stimuli_multiplier = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="paws"]
-position = Vector2(-403, 148)
-rotation = 0.523599
+position = Vector2(-331, 201)
+rotation = 0.762709
 shape = SubResource("CapsuleShape2D_ugvbo")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="paws"]
-position = Vector2(-333, 174)
+position = Vector2(-207, 210)
 rotation = 0.261799
 shape = SubResource("CapsuleShape2D_u0ugj")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="paws"]
-position = Vector2(297, 203)
-rotation = -0.261799
+position = Vector2(110, 213)
+rotation = 0.696386
 shape = SubResource("CapsuleShape2D_444eq")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="paws"]
-position = Vector2(368, 181)
-rotation = -0.523599
+position = Vector2(278, 182)
+rotation = -0.164061
 shape = SubResource("CapsuleShape2D_xlsy5")
 
 [node name="tummy" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("2_2s434")
 body_part = 4
 positive_multiplier = 5.0
@@ -123,12 +140,13 @@ negative_multiplier = 1.0
 stimuli_multiplier = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tummy"]
-position = Vector2(1, 84)
+position = Vector2(-40, 65)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_5pk0r")
 
 [node name="tail" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 position = Vector2(1, 0)
 script = ExtResource("2_2s434")
 body_part = 3
@@ -137,6 +155,46 @@ negative_multiplier = 3.0
 stimuli_multiplier = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tail"]
-position = Vector2(430, -190)
-rotation = 0.785398
+position = Vector2(379, -122)
+rotation = 0.905826
 shape = SubResource("CapsuleShape2D_wo7al")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="tail"]
+position = Vector2(454, -253)
+shape = SubResource("CapsuleShape2D_sm5rx")
+
+[node name="head_highlight" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.152941)
+texture = ExtResource("4_5hpbc")
+
+[node name="back_highlight" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.152941)
+texture = ExtResource("5_t0f0q")
+
+[node name="butt_highlight" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.152941)
+texture = ExtResource("6_hyq3t")
+
+[node name="tail_highlight" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.152941)
+texture = ExtResource("7_fvrtw")
+
+[node name="tummy_highlight" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.152941)
+texture = ExtResource("8_wx01s")
+
+[node name="paws_highlight" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.152941)
+texture = ExtResource("9_mjyts")

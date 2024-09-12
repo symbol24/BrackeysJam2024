@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bd3dj73fu4rt6"]
+[gd_scene load_steps=27 format=3 uid="uid://bd3dj73fu4rt6"]
 
 [ext_resource type="Script" path="res://addons/PackedUi/Code/ui.gd" id="1_j1lf8"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/main_menu.gd" id="2_dhl62"]
@@ -7,17 +7,22 @@
 [ext_resource type="Resource" uid="uid://b8vibxevek4jd" path="res://Data/SFX/attack_hit.tres" id="4_pajaf"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/options_menu.gd" id="4_wx7w4"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/credits.gd" id="5_6nx8t"]
+[ext_resource type="Texture2D" uid="uid://8juqcok8b270" path="res://Textures/scratch.png" id="6_84jd6"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/credits_section_data.gd" id="6_86k27"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/player_ui.gd" id="6_im37q"]
 [ext_resource type="Shader" path="res://Data/shaker.gdshader" id="6_j4lb2"]
-[ext_resource type="Resource" uid="uid://cj8cddje77ep4" path="res://addons/PackedUi/Credit Datas/demo_data.tres" id="7_5cen7"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/pause_menu.gd" id="7_r3cjq"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/result_screen.gd" id="8_p1pvi"]
+[ext_resource type="Script" path="res://Code/UI/how_to_play.gd" id="9_alkdw"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/wrappers/toggle_ui_button.gd" id="9_xcvtp"]
 [ext_resource type="Script" path="res://addons/PackedUi/Code/popups.gd" id="9_y8v47"]
+[ext_resource type="Texture2D" uid="uid://dwnkr2ov4qmle" path="res://Textures/cat.png" id="10_thids"]
+[ext_resource type="Texture2D" uid="uid://b0e10cbyi0d3v" path="res://Textures/hands.png" id="11_6a7wp"]
 [ext_resource type="Texture2D" uid="uid://b7kef1xa207ho" path="res://icon.svg" id="13_vydkj"]
 [ext_resource type="Texture2D" uid="uid://4fmfjwd7xr7l" path="res://addons/PackedUi/popup_icon_warning.png" id="14_8eegs"]
+[ext_resource type="Resource" uid="uid://bomfekyi5sese" path="res://Data/Credits/everything_else.tres" id="15_aiuyh"]
 [ext_resource type="Script" path="res://Code/UI/final_time_label.gd" id="15_c8w5w"]
+[ext_resource type="Resource" uid="uid://dusn4huximxj3" path="res://Data/Credits/audio.tres" id="16_rg3ha"]
 [ext_resource type="Resource" uid="uid://bl6yhrvc062le" path="res://Data/Music/fail_music.tres" id="16_vavc4"]
 [ext_resource type="Resource" uid="uid://mkbsbuu1exqj" path="res://Data/SFX/fail_sfx.tres" id="16_wqgfk"]
 
@@ -66,7 +71,7 @@ color = Color(0.442501, 7.58059e-07, 1.44392e-07, 0.619608)
 unique_name_in_owner = true
 visible = false
 position = Vector2(386, 272)
-texture = ExtResource("13_vydkj")
+texture = ExtResource("6_84jd6")
 
 [node name="shake_rect" type="ColorRect" parent="PlayerUI"]
 unique_name_in_owner = true
@@ -86,7 +91,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_dhl62")
 game_title = "GameTitle"
-menu_options = Array[String](["Play", "Settings", "Credits"])
+menu_options = Array[String](["Play", "How To Play", "Settings", "Credits"])
 background_color = Color(0.242052, 0.18342, 0.265668, 1)
 background = NodePath("background")
 id = "main_menu"
@@ -113,7 +118,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_ohvov")
 bbcode_enabled = true
-text = "[center]Game Title Here[/center]"
+text = "main_menu_title"
 scroll_active = false
 
 [node name="buttons_hbox" type="HBoxContainer" parent="MainMenu/vbox1"]
@@ -142,6 +147,125 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
+[node name="HowToPlay" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_alkdw")
+id = "how to play"
+
+[node name="Sprite2D" type="Sprite2D" parent="HowToPlay"]
+texture = ExtResource("10_thids")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="HowToPlay"]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.517647)
+
+[node name="vbox" type="VBoxContainer" parent="HowToPlay"]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 0
+
+[node name="spacer" type="Control" parent="HowToPlay/vbox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="title" type="RichTextLabel" parent="HowToPlay/vbox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("3_ohvov")
+theme_type_variation = &"MenuTitle"
+bbcode_enabled = true
+text = "how_to_play"
+
+[node name="spacer2" type="Control" parent="HowToPlay/vbox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="hbox" type="HBoxContainer" parent="HowToPlay/vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="spacer" type="Control" parent="HowToPlay/vbox/hbox"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HowToPlay/vbox/hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="part_1_rich" type="RichTextLabel" parent="HowToPlay/vbox/hbox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_ohvov")
+theme_type_variation = &"HTBText"
+bbcode_enabled = true
+text = "how_to_play_text"
+scroll_active = false
+
+[node name="Control" type="Control" parent="HowToPlay/vbox/hbox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="part_2_rich" type="RichTextLabel" parent="HowToPlay/vbox/hbox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme = ExtResource("3_ohvov")
+theme_type_variation = &"HTBText"
+bbcode_enabled = true
+text = "how_to_play_text_2"
+scroll_active = false
+
+[node name="Control2" type="Control" parent="HowToPlay/vbox/hbox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="part_3_rich" type="RichTextLabel" parent="HowToPlay/vbox/hbox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme = ExtResource("3_ohvov")
+theme_type_variation = &"HTBText"
+bbcode_enabled = true
+text = "how_to_play_text_3"
+scroll_active = false
+
+[node name="spacer2" type="Control" parent="HowToPlay/vbox/hbox"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="htp_return_btn" type="Button" parent="HowToPlay"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_left = 1011.0
+offset_top = 628.0
+offset_right = 1211.0
+offset_bottom = 669.0
+theme = ExtResource("3_ohvov")
+text = "Back"
+
+[node name="hand1" type="Sprite2D" parent="HowToPlay"]
+position = Vector2(116, 575)
+texture = ExtResource("11_6a7wp")
+vframes = 2
+
+[node name="hand2" type="Sprite2D" parent="HowToPlay"]
+position = Vector2(115, 430)
+texture = ExtResource("11_6a7wp")
+vframes = 2
+frame = 1
+
 [node name="OptionsMenu" type="Control" parent="." node_paths=PackedStringArray("background") groups=["OptionsMenu", "symbol24_plugin"]]
 visible = false
 custom_minimum_size = Vector2(1280, 720)
@@ -150,7 +274,7 @@ anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 script = ExtResource("4_wx7w4")
-menu_name = "Settings"
+menu_name = "settings_menu"
 confirm_on_exit = true
 background_color = Color(0.390689, 0.491481, 0.64164, 1)
 background = NodePath("options_background")
@@ -247,7 +371,7 @@ anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 script = ExtResource("5_6nx8t")
-credit_sections = Array[ExtResource("6_86k27")]([ExtResource("7_5cen7")])
+credit_sections = Array[ExtResource("6_86k27")]([ExtResource("15_aiuyh"), ExtResource("16_rg3ha")])
 background_color = Color(0.131654, 0.250022, 0.218582, 1)
 background = NodePath("background")
 id = "credits"
@@ -285,6 +409,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme = ExtResource("3_ohvov")
 bbcode_enabled = true
+text = "main_menu_title"
 
 [node name="spacer2" type="Control" parent="Credits/credits_scroll/credits_vbox"]
 custom_minimum_size = Vector2(0, 60)
@@ -421,6 +546,7 @@ text = "Main Menu"
 
 [node name="time_hbox" type="HBoxContainer" parent="ResultScreen"]
 custom_minimum_size = Vector2(1280, 100)
+layout_mode = 0
 offset_top = 238.0
 offset_right = 1280.0
 offset_bottom = 338.0
@@ -430,7 +556,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_ohvov")
 theme_type_variation = &"FinalTimerLabel"
-text = "Final Time"
+text = "final_time"
 horizontal_alignment = 2
 
 [node name="spacer" type="Control" parent="ResultScreen/time_hbox"]
@@ -602,7 +728,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_ohvov")
 theme_type_variation = &"LargePopupButton"
-text = "Cancel"
+text = "cancel"
 
 [node name="spacer3" type="Control" parent="Popups/large_popup/large_popup_panel/vbox/buttons"]
 custom_minimum_size = Vector2(10, 35)
@@ -615,5 +741,4 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_ohvov")
 theme_type_variation = &"LargePopupButton"
-text = "Confirm
-"
+text = "confirm"

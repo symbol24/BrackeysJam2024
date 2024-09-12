@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AudioFile" load_steps=5 format=3 uid="uid://5bhq7dojfifs"]
+
+[ext_resource type="Script" path="res://addons/AudioBySymbol/Code/Audio/audio_file.gd" id="1_j10od"]
+[ext_resource type="AudioStream" uid="uid://cth6o3gtr23dy" path="res://Audio/SFX/angry_meow1.wav" id="1_l8dph"]
+[ext_resource type="AudioStream" uid="uid://detfcslqc1aa4" path="res://Audio/SFX/angry_meow2.ogg" id="2_cj26j"]
+[ext_resource type="AudioStream" uid="uid://cx752glvsn232" path="res://Audio/SFX/angry_meow3.ogg" id="3_o8yho"]
+
+[resource]
+script = ExtResource("1_j10od")
+files = Array[AudioStream]([ExtResource("1_l8dph"), ExtResource("2_cj26j"), ExtResource("3_o8yho")])
+volume_db = 0.0
+min_pitch_scale = 1.0
+max_pitch_scale = 1.0
+is_music = false
+always_play = false
+is_unique = false

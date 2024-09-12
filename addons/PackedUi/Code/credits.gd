@@ -35,7 +35,7 @@ func _ready() -> void:
 	if credit_sections.is_empty():
 		push_warning("Credits Ui does not have any Credit Section Data to display.")
 	if not UI.is_node_ready(): await UI.ready
-	game_name_in_credits.text = "[center]"+UI.game_name+"[/center]"
+	#game_name_in_credits.text = "[center]"+UI.game_name+"[/center]"
 	_create_credits(credit_sections)
 	back_btn.pressed.connect(_back_btn_pressed)
 	
@@ -57,6 +57,9 @@ func _create_credits(_list:Array[CreditSectionData]) -> void:
 		credits_vbox.add_child.call_deferred(new_section)
 		await new_section.ready
 		new_section.set_section(section)
+		var spacer:Control = Control.new()
+		spacer.custom_minimum_size.y = 50
+		credits_vbox.add_child.call_deferred(spacer)
 
 
 func _back_btn_pressed() -> void:

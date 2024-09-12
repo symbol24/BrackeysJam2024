@@ -2,7 +2,7 @@ extends Node
 
 # Game parameters
 var playing:bool = false
-var debug:bool = true
+var debug:bool = false
 
 # Play timer
 var timer_running:bool = false

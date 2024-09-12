@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AudioFile" load_steps=5 format=3 uid="uid://bwhxfgh56dwl7"]
+
+[ext_resource type="AudioStream" uid="uid://cahuj5hethiii" path="res://Audio/SFX/growl1.ogg" id="1_liwjf"]
+[ext_resource type="Script" path="res://addons/AudioBySymbol/Code/Audio/audio_file.gd" id="1_rv3mc"]
+[ext_resource type="AudioStream" uid="uid://dm5lkqfgm4gv2" path="res://Audio/SFX/growl2.ogg" id="2_h700e"]
+[ext_resource type="AudioStream" uid="uid://dwadk4g2b6i3h" path="res://Audio/SFX/growl3.ogg" id="3_giwwo"]
+
+[resource]
+script = ExtResource("1_rv3mc")
+files = Array[AudioStream]([ExtResource("1_liwjf"), ExtResource("2_h700e"), ExtResource("3_giwwo")])
+volume_db = 0.0
+min_pitch_scale = 1.0
+max_pitch_scale = 1.0
+is_music = false
+always_play = false
+is_unique = false

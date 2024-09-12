@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AudioFile" load_steps=5 format=3 uid="uid://c7kddcnbwaqpu"]
+
+[ext_resource type="Script" path="res://addons/AudioBySymbol/Code/Audio/audio_file.gd" id="1_dqt7j"]
+[ext_resource type="AudioStream" uid="uid://drsbpdy661lon" path="res://Audio/SFX/hiss1.ogg" id="1_kihnq"]
+[ext_resource type="AudioStream" uid="uid://q1gchr403uab" path="res://Audio/SFX/hiss2.ogg" id="2_xpua3"]
+[ext_resource type="AudioStream" uid="uid://d4l5yxx8a0kq8" path="res://Audio/SFX/hiss3.ogg" id="3_g38gn"]
+
+[resource]
+script = ExtResource("1_dqt7j")
+files = Array[AudioStream]([ExtResource("1_kihnq"), ExtResource("2_xpua3"), ExtResource("3_g38gn")])
+volume_db = 0.0
+min_pitch_scale = 1.0
+max_pitch_scale = 1.0
+is_music = false
+always_play = false
+is_unique = false

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AudioFile" load_steps=4 format=3 uid="uid://dbutn4khj8gyk"]
+
+[ext_resource type="Script" path="res://addons/AudioBySymbol/Code/Audio/audio_file.gd" id="1_c3fu1"]
+[ext_resource type="AudioStream" uid="uid://ddyvdtgx8bvnd" path="res://Audio/SFX/purr1.ogg" id="1_fpvpm"]
+[ext_resource type="AudioStream" uid="uid://dd7tgt7cf25ux" path="res://Audio/SFX/purr2.ogg" id="2_8up85"]
+
+[resource]
+script = ExtResource("1_c3fu1")
+files = Array[AudioStream]([ExtResource("1_fpvpm"), ExtResource("2_8up85")])
+volume_db = 0.0
+min_pitch_scale = 1.0
+max_pitch_scale = 1.0
+is_music = false
+always_play = false
+is_unique = false
